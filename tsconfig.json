@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    /* Options de Base */
+    "target": "es2018",                          // Spécifie la version ECMAScript cible pour la compatibilité avec Node.js
+    "module": "commonjs",                        // Spécifie le système de modules
+    "lib": ["es2018"],                           // Spécifie les bibliothèques de types à inclure
+    "outDir": "./build",                         // Répertoire de sortie pour les fichiers compilés
+    "rootDir": "./src",                          // Répertoire racine contenant les fichiers TypeScript
+    "strict": true,                              // Active une série d'options strictes
+    "esModuleInterop": true,                     // Permet l'interopérabilité par défaut des modules ES6 avec CommonJS
+    "skipLibCheck": true,                        // Ignore les vérifications de types pour les fichiers de déclaration des bibliothèques
+    "forceConsistentCasingInFileNames": true,    // Assure une cohérence de casse dans les noms de fichiers
+
+    /* Options de Débogage */
+    "sourceMap": true,                           // Génère des fichiers source map pour le débogage
+
+    /* Options Strictes */
+    "noImplicitAny": true,                       // Évite les déclarations implicites 'any'
+    "strictNullChecks": true,                    // Active les contrôles stricts de null
+    "strictFunctionTypes": false,                 // Utilise des vérifications de type strictes pour les fonctions
+    "strictPropertyInitialization": true,        // Vérifie l'initialisation correcte des propriétés de classe
+
+    /* Options Avancées */
+    "resolveJsonModule": true,                   // Permet l'importation de modules JSON
+    "noUnusedLocals": false,                      // Signale les variables locales non utilisées
+    "noUnusedParameters": false,                  // Signale les paramètres non utilisés
+    "noImplicitReturns": true,                   // Assure que toutes les fonctions retournent une valeur
+    "noFallthroughCasesInSwitch": true           // Empêche les cas de switch sans 'break'
+  },
+  "include": [
+    "src/**/*"                                   // Inclut tous les fichiers TypeScript dans le répertoire src
+  ],
+  "exclude": [
+    "node_modules",                              // Exclut le répertoire node_modules
+    "**/*.test.ts"                               // Exclut les fichiers de test
+  ]
+}
