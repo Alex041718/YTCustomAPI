@@ -8,5 +8,11 @@ interface ApiResponse {
         }
     });
     const data = await response.json();
+    // return error if response is not ok
+    if (!response.ok) {
+        // @ts-ignore
+        //throw new Error(data.error.message);
+        return null;
+    }
     return data as any;
 }

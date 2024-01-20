@@ -20,6 +20,13 @@ const getLibrary = async (req: Request, res: Response) => {
     const rawLibUrl = apiOptions(apiEndPoints.getListPlaylistOfUser, {});
     const rawLib = await fetchHelper(rawLibUrl, token);
 
+    //if rawLib is null return error
+    if (!rawLib) {
+        console.log("Error with request to Youtube API");
+        res.status(401).send({error: "Unauthorized"});
+        return;
+    }
+
     // Fetch data of each playlist
     // @ts-ignore
     const playlists = rawLib.items;
@@ -27,6 +34,13 @@ const getLibrary = async (req: Request, res: Response) => {
         const playlistId = playlist.id;
         const playlistUrl = apiOptions(apiEndPoints.getDataPlaylist, {id: playlistId});
         const playlistData = await fetchHelper(playlistUrl, token);
+
+        //if playlistData is null return error
+        if (!playlistData) {
+            console.log("Error with request to Youtube API");
+            res.status(401).send({error: "Unauthorized"});
+            return;
+        }
 
         const cleanPlaylistData: IPlaylistData = {
             id: playlistData.items[0].id,

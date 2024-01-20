@@ -28,9 +28,22 @@ const getPlaylist = async (req: Request, res: Response) => {
     const rawPlaylistUrl = apiOptions(apiEndPoints.getDataPlaylistItems, {id: playlistId});
     const rawPlaylist = await fetchHelper(rawPlaylistUrl, token);
 
+    //if rawPlaylist is null return error
+    if (!rawPlaylist) {
+        res.status(401).send({error: "Unauthorized"});
+        return;
+    }
+
     // and data detail of the playlist
     const playlistDetai = apiOptions(apiEndPoints.getDataPlaylist, {id: playlistId});
     const playlistDetail = await fetchHelper(playlistDetai, token);
+
+    //if playlistDetail is null return error
+    if (!playlistDetail) {
+        console.log("Error with request to Youtube API");
+        res.status(401).send({error: "Unauthorized"});
+        return;
+    }
 
 
     let data:IMusicData[] = [];

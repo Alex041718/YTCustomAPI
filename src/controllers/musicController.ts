@@ -26,6 +26,13 @@ const getMusic = async (req: Request, res: Response) => {
     const rawMusicUrl = apiOptions(apiEndPoints.getDataMusic, {id: musicId});
     const rawMusic = await fetchHelper(rawMusicUrl, token);
 
+    //if rawMusic is null return error
+    if (!rawMusic) {
+        console.log("Error with request to Youtube API");
+        res.status(401).send({error: "Unauthorized"});
+        return;
+    }
+
     // Get the stream url
     const streamUrlData = await getStreamUrl(musicId);
 
