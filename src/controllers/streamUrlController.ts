@@ -38,6 +38,11 @@ const getStreamUrl = async (req: Request, res: Response) => {
     const id = req.params.id;
 
     const streamUrlData = await getStreamUrlByYTDL(id);
+    if (!streamUrlData) {
+        res.status(401).send({error: "Failed to get stream url"});
+        return;
+
+    }
 
     const response = {id: id, streamUrl: streamUrlData.audioURL};
     res.status(200).send(response);

@@ -36,6 +36,12 @@ const getMusic = async (req: Request, res: Response) => {
     // Get the stream url
     const streamUrlData = await getStreamUrl(musicId);
 
+    //if streamUrlData is null return error
+    if (!streamUrlData) {
+        res.status(401).send({error: "Failed to get stream url"});
+        return;
+    }
+
     const cleanMusicData: IMusicData = {
         id: rawMusic.items[0].id,
         name: rawMusic.items[0].snippet.title,
